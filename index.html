@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小黄和小七的万能卡记录</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#FF85A2',
+                    secondary: '#85C6FF',
+                    neutral: '#FFF5F8',
+                },
+                fontFamily: {
+                    cute: ['"Comic Sans MS"', '"Marker Felt"', 'Arial', 'sans-serif'],
+                },
+            }
+        }
+    }
+</script>
+
+<style type="text/tailwindcss">
+    @layer utilities {
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+        .count-animation {
+            transition: all 0.3s ease-out;
+        }
+        .count-animation.change {
+            transform: scale(1.3);
+            font-weight: bold;
+        }
+    }
+</style>
+</head>
+<body class="bg-neutral min-h-screen font-cute p-4 sm:p-6 md:p-8">
+
+<div class="max-w-2xl mx-auto">
+    <header class="text-center mb-8 sm:mb-12 relative">
+        <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+            万能卡记录
+        </h1>
+    </header>
+
+    <section class="bg-white/80 rounded-3xl p-6 mb-8 card-shadow relative overflow-hidden">
+        <h2 class="text-xl sm:text-2xl font-bold mb-4 text-gray-700 flex items-center">
+            <i class="fa fa-info-circle text-primary mr-2"></i>
+            什么是万能卡？
+        </h2>
+        <p class="text-gray-600 text-lg leading-relaxed">
+            万能卡可以用来让对方完成你的小小心愿，无论是帮你做事还是给你惊喜。
+            每次对方满足了你的一个愿望，就可以使用一张万能卡哦！
+        </p>
+    </section>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- 小黄卡片 -->
+        <div class="bg-gradient-to-br from-secondary/20 to-secondary/5 rounded-3xl p-6 card-shadow relative overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <h3 class="text-2xl font-bold mb-2 text-secondary flex items-center">
+                <i class="fa fa-user-circle mr-2"></i>小黄的万能卡
+            </h3>
+            <div class="flex items-center justify-center my-6">
+                <button onclick="changeCard('xiaohuang', -1)" class="bg-secondary/20 hover:bg-secondary/40 text-secondary w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold"><i class="fa fa-minus"></i></button>
+                <div class="mx-6">
+                    <span id="count-xiaohuang" class="text-5xl font-bold text-secondary count-animation">0</span>
+                    <span class="text-gray-500 ml-2">张</span>
+                </div>
+                <button onclick="changeCard('xiaohuang', 1)" class="bg-secondary/20 hover:bg-secondary/40 text-secondary w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+
+        <!-- 小七卡片 -->
+        <div class="bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl p-6 card-shadow relative overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <h3 class="text-2xl font-bold mb-2 text-primary flex items-center">
+                <i class="fa fa-user-circle mr-2"></i>小七的万能卡
+            </h3>
+            <div class="flex items-center justify-center my-6">
+                <button onclick="changeCard('xiaoqi', -1)" class="bg-primary/20 hover:bg-primary/40 text-primary w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold"><i class="fa fa-minus"></i></button>
+                <div class="mx-6">
+                    <span id="count-xiaoqi" class="text-5xl font-bold text-primary count-animation">0</span>
+                    <span class="text-gray-500 ml-2">张</span>
+                </div>
+                <button onclick="changeCard('xiaoqi', 1)" class="bg-primary/20 hover:bg-primary/40 text-primary w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-gray-500 mt-12">
+        <p>用爱记录每一个小确幸 ❤️</p>
+    </footer>
+</div>
+
+<script src="work.js"></script>
+<script>
+window.onload = async () => { await loadData(); };
+</script>
+
+</body>
+</html>
+
